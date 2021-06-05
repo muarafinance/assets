@@ -18,37 +18,25 @@ const Scene: FunctionComponent<{}> = ({}) => {
         <>
             <PerspectiveCamera makeDefault position={[0, 0, 4]} fov={75}>
                 <ambientLight intensity={1} />
-                <pointLight
-                    ref={light}
-                    position-z={-15}
-                    intensity={1}
-                    color="#F8C069"
-                />
             </PerspectiveCamera>
             <Suspense fallback={null}>
-                <mesh scale={1}>
+                <mesh
+                    scale={1.5}
+                    rotation={[Math.PI / 2, Math.PI / 1, Math.PI / 2]}
+                >
                     <sphereBufferGeometry args={[1, 64, 64]} />
                     <MeshDistortMaterial
-                        attach="material"
-                        color="#FFF"
+                        color="white"
                         envMapIntensity={1}
                         clearcoat={1}
                         clearcoatRoughness={0}
-                        metalness={0.1}
-                        // speed={0}
-                        distort={0.7}
+                        metalness={0.6}
+                        speed={0}
+                        distort={0.8}
+                        skinning
                     />
                 </mesh>
                 <Environment preset="warehouse" />
-                <ContactShadows
-                    rotation={[Math.PI / 2, 0, 0]}
-                    position={[0, -1.6, 0]}
-                    opacity={0.8}
-                    width={15}
-                    height={15}
-                    blur={2.5}
-                    far={1.6}
-                />
             </Suspense>
         </>
     );
